@@ -10,5 +10,5 @@ import '@/assets/css/global.css'
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 
 createApp(App).use(store).use(router).use(ElementPlus, {
-    locale: zhCn,
+    locale: zhCn, size: 'small'
 }).mount('#app')

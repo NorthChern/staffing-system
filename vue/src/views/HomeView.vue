@@ -15,15 +15,15 @@
     </div>
 
     <el-table :data="tableData" border stripe style="width: 100%">
-      <el-table-column prop="date" label="Date" sortable />
-      <el-table-column prop="name" label="Name"/>
-      <el-table-column prop="address" label="Address" />
-      <el-table-column fixed="right" label="Operations" width="120">
-        <template #default>
-          <el-button link type="primary" @click="handleEdit">编辑</el-button>
+      <el-table-column prop="date" label="日期" sortable />
+      <el-table-column prop="name" label="姓名"/>
+      <el-table-column prop="address" label="地址" />
+      <el-table-column fixed="right" label="操作" width="140px">
+        <template #default="scope">
+          <el-button size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
           <el-popconfirm title="确认删除？">
             <template #reference>
-              <el-button type="text">删除</el-button>
+              <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
             </template>
           </el-popconfirm>
         </template>
@@ -69,6 +69,9 @@ export default {
   },
   methods: {
     handleEdit(){
+
+    },
+    handleDelete(){
 
     },
     handleSizeChange(){
