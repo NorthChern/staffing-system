@@ -1,18 +1,82 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div style="padding: 10px">
+
+<!--    功能区-->
+    <div style="margin: 10px 0">
+      <el-button type="primary">新增</el-button>
+      <el-button type="primary">导入</el-button>
+      <el-button type="primary">导出</el-button>
+    </div>
+
+<!--    搜索区-->
+    <div style="margin: 10px 0">
+      <el-input v-model="search" placeholder="输入关键字搜索" style="width: 20%"/>
+      <el-button type="primary" style="margin-left: 5px">搜索</el-button>
+    </div>
+
+    <el-table :data="tableData" border stripe style="width: 100%">
+      <el-table-column prop="date" label="Date" sortable />
+      <el-table-column prop="name" label="Name"/>
+      <el-table-column prop="address" label="Address" />
+      <el-table-column fixed="right" label="Operations" width="120">
+        <template #default>
+          <el-button link type="primary" @click="handleEdit">编辑</el-button>
+          <el-popconfirm title="确认删除？">
+            <template #reference>
+              <el-button type="text">删除</el-button>
+            </template>
+          </el-popconfirm>
+        </template>
+      </el-table-column>
+    </el-table>
+    <div style="margin: 10px 0" >
+      <el-pagination
+          :current-page="currentPage"
+          :page-size="10"
+          :page-sizes="[5, 10, 20]"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="total"
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange">
+      </el-pagination>
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+
 
 export default {
   name: 'HomeView',
   components: {
-    HelloWorld
+
+  },
+  data(){
+    return {
+      search: '',
+      currentPage: 1,
+      total: 10,
+      tableData: [{
+        date: '2016-05-02',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1518 弄'
+      }, {
+        date: '2016-05-04',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1517 弄'
+      }]
+    }
+  },
+  methods: {
+    handleEdit(){
+
+    },
+    handleSizeChange(){
+
+    },
+    handleCurrentChange(){
+
+    }
   }
 }
 </script>
